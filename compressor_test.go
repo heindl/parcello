@@ -20,9 +20,9 @@ var _ = Describe("ZipCompressor", func() {
 	BeforeEach(func() {
 		compressor = &parcello.ZipCompressor{
 			Config: &parcello.CompressorConfig{
-				Logger:   GinkgoWriter,
-				Filename: "bundle",
-				Recurive: true,
+				Logger:    GinkgoWriter,
+				Filename:  "bundle",
+				Recursive: true,
 			},
 		}
 	})
@@ -144,7 +144,7 @@ var _ = Describe("ZipCompressor", func() {
 
 	Context("when the recursion is disabled", func() {
 		It("does not go through the hierarchy", func() {
-			compressor.Config.Recurive = false
+			compressor.Config.Recursive = false
 
 			fileSystem := parcello.Dir("./fixture")
 			ctx := &parcello.CompressorContext{

@@ -22,8 +22,8 @@ type CompressorConfig struct {
 	Filename string
 	// IgnorePatterns provides a list of all files that has to be ignored
 	IgnorePatterns []string
-	// Recurive enables embedding the resources recursively
-	Recurive bool
+	// Recursive enables embedding the resources recursively
+	Recursive bool
 }
 
 // ZipCompressor compresses content as GZip tarball
@@ -133,7 +133,7 @@ func (e *ZipCompressor) filter(path string, info os.FileInfo) error {
 		return nil
 	}
 
-	if !e.Config.Recurive && path != "." {
+	if !e.Config.Recursive && path != "." {
 		return filepath.SkipDir
 	}
 
@@ -141,9 +141,8 @@ func (e *ZipCompressor) filter(path string, info os.FileInfo) error {
 }
 
 func (e *ZipCompressor) ignore(path string, info os.FileInfo) error {
-	ignore := append(e.Config.IgnorePatterns, "*.go")
 
-	for _, pattern := range ignore {
+	for _, pattern := range e.Config.IgnorePatterns {
 		matched, err := match(pattern, path, info.Name())
 
 		if err != nil {

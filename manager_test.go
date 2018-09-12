@@ -29,9 +29,9 @@ var _ = Describe("ResourceManager", func() {
 
 		compressor := parcello.ZipCompressor{
 			Config: &parcello.CompressorConfig{
-				Logger:   ioutil.Discard,
-				Filename: "bundle",
-				Recurive: true,
+				Logger:    ioutil.Discard,
+				Filename:  "bundle",
+				Recursive: true,
 			},
 		}
 
